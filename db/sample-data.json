@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "info": "Himanshu Pal",
+    "description": "BCA from Maharaja Agrasen Himalayan Garhwal University,  Born and raised in Prayagraj, Uttar Pradesh. Built several responsive web applications using React, Next.js, and SQL, implementing Clerk Authentication for secure user access and data handling. "
+  },
+  {
+    "id": 2,
+    "info": "Education",
+    "description": "Maharaja Agrasen Himalayan Garhwal University"
+  },
+  {
+    "id": 3,
+    "info": "Profession",
+    "description": "Web Developer"
+  },
+ 
+  {
+    "id": 5,
+    "info": "Linkedin",
+    "description": "linkedin.com/in/himanshu-pal01 "
+  },
+  {
+    "id": 6,
+    "info": "Personal Project",
+    "description": "Made a WorldAtlas App using React, Axios, React Router, CSS,        Tailwind CSS, Clerk (Auth), Code for that project -                                 https://github.com/bobby16112004/WorldAtlas"
+  }
+]
