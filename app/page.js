@@ -14,7 +14,7 @@ export default function Home() {
       {/* Background Image */}
       <Image
         src="/Gemini_Generated_Image_bjhvntbjhvntbjhv.png"
-        alt="RoadsideCoder Banner"
+        alt="Banner"
         fill
         className="object-cover object-top md:object-[center_31%]"
         priority
