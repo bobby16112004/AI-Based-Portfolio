@@ -1,25 +1,30 @@
 import { DataAPIClient } from "@datastax/astra-db-ts";
 
+// ✅ DB client ko ek baar initialize karne ke liye safe wrapper
 let db = null;
 
-// Check karo environment variables properly mile hain ya nahi
-if (
-  process.env.ASTRA_DB_APPLICATION_TOKEN &&
-  process.env.ASTRA_DB_API_ENDPOINT
-) {
-  try {
-    const client = new DataAPIClient(process.env.ASTRA_DB_APPLICATION_TOKEN);
-    db = client.db(process.env.ASTRA_DB_API_ENDPOINT, {
-      namespace: process.env.ASTRA_DB_NAMESPACE || "default_keyspace",
-    });
-    console.log("✅ Astra DB connected successfully");
-  } catch (error) {
-    console.error("❌ Error connecting to Astra DB:", error);
+function connectToAstra() {
+  const token = process.env.ASTRA_DB_APPLICATION_TOKEN;
+  const endpoint = process.env.ASTRA_DB_API_ENDPOINT;
+  const namespace = process.env.ASTRA_DB_NAMESPACE || "default_keyspace";
+
+  if (!token || !endpoint) {
+    console.warn("⚠️ Missing Astra DB environment variables — skipping DB connection (build mode)");
+    return null;
   }
-} else {
-  console.warn(
-    "⚠️ Missing Astra DB environment variables — skipping DB connection (likely in build mode)"
-  );
+
+  try {
+    const client = new DataAPIClient(token);
+    return client.db(endpoint, { namespace });
+  } catch (err) {
+    console.error("❌ Error initializing Astra DB:", err.message);
+    return null;
+  }
+}
+
+// ✅ build logs me secret na aaye
+if (!process.env.NETLIFY) {
+  db = connectToAstra();
 }
 
 export default db;
