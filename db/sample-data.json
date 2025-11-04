@@ -1,28 +1,37 @@
 [
   {
     "id": 1,
-    "info": "Himanshu Pal",
-    "description": "BCA from Maharaja Agrasen Himalayan Garhwal University,  Born and raised in Prayagraj, Uttar Pradesh. Built several responsive web applications using React, Next.js, and SQL, implementing Clerk Authentication for secure user access and data handling. "
+    "title": "Portfolio Intro",
+    "description": "This portfolio belongs to Himanshu Pal, a dedicated Full Stack Web Developer from Prayagraj, Uttar Pradesh. He completed BCA from Maharaja Agrasen Himalayan Garhwal University and specializes in building modern, responsive web apps using React, Next.js, and Tailwind CSS."
   },
   {
     "id": 2,
-    "info": "Education",
-    "description": "Maharaja Agrasen Himalayan Garhwal University"
+    "title": "Education",
+    "description": "Himanshu Pal has completed his Bachelor of Computer Applications (BCA) from Maharaja Agrasen Himalayan Garhwal University, focusing on software development, data structures, and modern web technologies."
   },
   {
     "id": 3,
-    "info": "Profession",
-    "description": "Web Developer"
+    "title": "Profession",
+    "description": "Himanshu Pal is a passionate Web Developer experienced in building scalable, user-friendly web applications with React, Next.js, Node.js, Express, and databases like MongoDB and SQL."
   },
- 
+  {
+    "id": 4,
+    "title": "Technical Skills",
+    "description": "Proficient in JavaScript, React, Next.js, Node.js, Express, MongoDB, Tailwind CSS, and Clerk Authentication. Also experienced in REST APIs, vector databases, and AI integrations."
+  },
   {
     "id": 5,
-    "info": "Linkedin",
-    "description": "linkedin.com/in/himanshu-pal01 "
+    "title": "LinkedIn",
+    "description": "linkedin.com/in/himanshu-pal01 — Himanshu actively shares projects, insights, and development experiences here."
   },
   {
     "id": 6,
-    "info": "Personal Project",
-    "description": "Made a WorldAtlas App using React, Axios, React Router, CSS,        Tailwind CSS, Clerk (Auth), Code for that project -                                 https://github.com/bobby16112004/WorldAtlas"
+    "title": "Personal Project",
+    "description": "Developed 'WorldAtlas', a web app built using React, Axios, React Router, CSS, Tailwind, and Clerk (Auth). Users can explore country data with an intuitive interface. Code available on GitHub: https://github.com/bobby16112004/WorldAtlas"
+  },
+  {
+    "id": 7,
+    "title": "Career Objective",
+    "description": "To build impactful, efficient, and visually appealing web applications that merge creativity with logic. Himanshu aims to constantly learn, innovate, and contribute to the modern web ecosystem."
   }
 ]
