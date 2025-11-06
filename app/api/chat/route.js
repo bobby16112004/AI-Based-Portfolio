@@ -4,7 +4,16 @@ dotenv.config();
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
-import db from "@/db/loadDb";
+
+// 🧠 FIX: Astra DB load import ko try-catch me wrap kiya hai
+// Agar namespace invalid ya missing hua, to hum log karenge aur fallback mode pe chale jayenge
+let db;
+try {
+  db = await import("@/db/loadDb").then((mod) => mod.default);
+} catch (err) {
+  console.error("⚠️ Astra DB failed to initialize. Check namespace env var:", err.message);
+  db = null; // Fallback: prevent crash
+}
 
 // 🧠 Initialize OpenAI client
 const openai = new OpenAI({
@@ -20,25 +29,29 @@ export async function POST(req) {
       return NextResponse.json({ error: "No message provided" }, { status: 400 });
     }
 
-    // 🧱 Access or create Astra collection
+    // 🧱 Access or create Astra collection (only if db available)
     let collection;
-    try {
-      collection = await db.collection("portfolio");
-    } catch (err) {
-      if (err.message?.includes("Collection not found")) {
-        console.log("⚙️ Creating 'portfolio' collection in Astra DB...");
-        await db.createCollection("portfolio", {
-          vector: { dimension: 1536, metric: "cosine" },
-        });
+    if (db) {
+      try {
         collection = await db.collection("portfolio");
-      } else throw err;
+      } catch (err) {
+        if (err.message?.includes("Collection not found")) {
+          console.log("⚙️ Creating 'portfolio' collection in Astra DB...");
+          await db.createCollection("portfolio", {
+            vector: { dimension: 1536, metric: "cosine" },
+          });
+          collection = await db.collection("portfolio");
+        } else throw err;
+      }
+    } else {
+      console.warn("⚠️ Skipping DB operations — db not initialized");
     }
 
     // ==============================
     // 🧠 PAID MODE — ACTIVE
     // ==============================
-
-   /* // First: generate embedding
+    /*
+    // First: generate embedding
     const embeddingResponse = await openai.embeddings.create({
       input: latestMessage,
       model: "text-embedding-3-small",
@@ -82,16 +95,17 @@ export async function POST(req) {
 
     const stream = OpenAIStream(response);
     return new StreamingTextResponse(stream);
-*/
+    */
+
     // ==============================
     // 🧩 TEMP RESPONSE (FREE MODE)
     // ==============================
 
     return NextResponse.json({
       role: "assistant",
-      content: "👋 Hi! I’m Himanshu’s AI assistant. OpenAI service is temporarily off right now, but everything else is working perfectly!",
+      content:
+        "👋 Hi! I’m Himanshu’s AI assistant. OpenAI service is temporarily off right now, but everything else is working perfectly!",
     });
-    
 
   } catch (error) {
     console.error("🔥 SERVER ERROR =>", error);
