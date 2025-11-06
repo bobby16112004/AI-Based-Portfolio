@@ -38,7 +38,7 @@ export async function POST(req) {
     // 🧠 PAID MODE — ACTIVE
     // ==============================
 
-    // First: generate embedding
+   /* // First: generate embedding
     const embeddingResponse = await openai.embeddings.create({
       input: latestMessage,
       model: "text-embedding-3-small",
@@ -82,16 +82,16 @@ export async function POST(req) {
 
     const stream = OpenAIStream(response);
     return new StreamingTextResponse(stream);
-
+*/
     // ==============================
     // 🧩 TEMP RESPONSE (FREE MODE)
     // ==============================
-/*
+
     return NextResponse.json({
       role: "assistant",
       content: "👋 Hi! I’m Himanshu’s AI assistant. OpenAI service is temporarily off right now, but everything else is working perfectly!",
     });
-    */
+    
 
   } catch (error) {
     console.error("🔥 SERVER ERROR =>", error);
