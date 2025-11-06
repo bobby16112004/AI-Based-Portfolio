@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Himanshu Pal | Interactive AI-powered portfolio",
+  title: "Himanshu Pal | AI Portfolio",
   description: "Interactive AI-powered portfolio built with Next.js and OpenAI",
 };
 
