@@ -11,7 +11,7 @@
 
 # next.js
 /.next/
-/out/
+ /out/
 
 # production
 /build
@@ -25,11 +25,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files (must never be committed or uploaded)
 .env
 .env.local
 .env.*
+*.env
 .netlify/
+.netlifyignore
 
 # vercel
 .vercel
